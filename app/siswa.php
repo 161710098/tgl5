@@ -12,7 +12,5 @@ class siswa extends Model
     public function Kelas(){
     	return $this->belongsTo('App\Kelas','id_kelas');
     }
-    public function siswa(){
-        return $this->hasmany('App\siswa','kelas_id');
-}
+    
 }
