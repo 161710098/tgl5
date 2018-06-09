@@ -30,9 +30,10 @@
                             </span>
                         @endif
 			  		</div>
-					  <div class="form-group {{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
+					 <div class="form-group {{ $errors->has('Jenis_kelamin') ? ' has-error' : '' }}">
 			  			<label class="control-label">Jenis Kelamin</label>	
-			  			<input type="text" name="jenis_kelamin" class="form-control"  required>
+			  			<input type="radio" name="jenis_kelamin" class="form"  value="Perempuan">Perempuan
+			  			<input type="radio" name="jenis_kelamin" class="form"  value="Laki-laki">Laki-laki
 			  			@if ($errors->has('jenis_kelamin'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('jenis_kelamin') }}</strong>

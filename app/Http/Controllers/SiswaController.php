@@ -90,7 +90,7 @@ class SiswaController extends Controller
             'nama' => 'required',
             'nis'=>'required',
             'jenis_kelamin'=>'required',
-            'id_kelas'=>'required',
+            'id_kelas'=>'required'
             ]);
         $siswa = siswa::findOrFail($id);
         $siswa->nama = $request->nama;

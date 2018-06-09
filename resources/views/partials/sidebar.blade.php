@@ -38,11 +38,7 @@
                         <a href="{{ route('absen.index') }}">
                                 <i class="fas fa-table"></i>Absensi</a>
                         </li>
-                       <li>
-                        <a href="{{ route('keterangan.index') }}">
-                                <i class="fas fa-table"></i>Keterangan</a>
-                        </li>
-                      
+                       
                      
                         </li>
                       

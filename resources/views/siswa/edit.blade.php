@@ -32,16 +32,17 @@
                         @endif
 			  		</div>
 
-			  		<div class="form-group {{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
+			  		<div class="form-group {{ $errors->has('Jenis_kelamin') ? ' has-error' : '' }}">
 			  			<label class="control-label">Jenis Kelamin</label>	
-			  			<input type="text" name="jenis_kelamin" value="{{ $k->jenis_kelamin }}" class="form-control"  required>
+			  			<input type="radio" name="jenis_kelamin" class="form"  value="Perempuan">Perempuan
+			  			<input type="radio" name="jenis_kelamin" class="form"  value="Laki-laki">Laki-laki
 			  			@if ($errors->has('jenis_kelamin'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('jenis_kelamin') }}</strong>
                             </span>
                         @endif
 			  		</div>
-                      <div class="form-group {{ $errors->has('id_kelas') ? ' has-error' : '' }}">
+                   <div class="form-group {{ $errors->has('id_kelas') ? ' has-error' : '' }}">
 			  			<label class="control-label">kelas</label>	
 			  			<input type="text" name="id_kelas" value="{{ $siswa->id_kelas }}" class="form-control"  required>
 			  			@if ($errors->has('id_kelas'))

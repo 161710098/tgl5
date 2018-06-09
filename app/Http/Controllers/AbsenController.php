@@ -15,7 +15,7 @@ class AbsenController extends Controller
      */
     public function index()
     {
-         $absen = Absen::all();
+         $absen = Absen::with('siswa')->get();
         return view ('absen.index',compact('absen'));
     }
 
@@ -41,15 +41,15 @@ class AbsenController extends Controller
         $this->validate($request,[
             'tgl_absen'=>'required',
             'siswa_id'=>'required',
-            'id_keterangan'=>'required'
+            'keterangan'=>'required'
         ]);
         $absen = new Absen;
         $absen->tgl_absen = $request->tgl_absen;
         $absen->siswa_id = $request->siswa_id;
-        $absen->id_keterangan = $request->id_keterangan;
+        $absen->keterangan = $request->keterangan;
         $absen->save();
         // Alert::success('Tambah Data','Berhasil')->autoclose(1500);
-        return redirect('absensi');
+        return redirect()->route('absen.index');
     }
 
     /**
@@ -72,8 +72,8 @@ class AbsenController extends Controller
      */
     public function edit($id)
     {
-        $absen = Absen::all();
-        return view('absen.create',compact('absen'));
+        $absen = Absen::all($id);
+        return view('absen.edit',compact('absen'));
     }
 
     /**
@@ -89,13 +89,13 @@ class AbsenController extends Controller
             'tgl_absen' => 'required',
             'kelas'=>'required',
             'siswa_id'=>'required',
-            'id_keterangan'=>'required'
+            'keterangan'=>'required'
             ]);
         $absen = Absen::findOrFail($id);
         $absen->tgl_absen = $request->tgl_absen;
         $absen->kelas = $request->kelas;
         $absen->siswa_id = $request->siswa_id;
-        $absen->id_keterangan = $request->id_keterangan;
+        $absen->keterangan = $request->keterangan;
         $absen->save();
         // Alert::success('Tambah Data','Berhasil')->autoclose(1500);
         return redirect()->route('absen.index');

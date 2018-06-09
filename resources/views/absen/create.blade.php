@@ -38,12 +38,14 @@
                         @endif
 			  		</div>
 
-			  		<div class="form-group {{ $errors->has('id_keterangan') ? ' has-error' : '' }}">
+			  		<div class="form-group {{ $errors->has('keterangan') ? ' has-error' : '' }}">
 			  			<label class="control-label">Keterangan</label>	
-			  			<input type="text" name="id_keterangan" class="form-control"  required>
-			  			@if ($errors->has('id_keterangan'))
+			  			<input type="radio" name="keterangan" class="form"  value="Sakit">Sakit
+			  			<input type="radio" name="keterangan" class="form"  value="Izin">Izin
+			  			<input type="radio" name="keterangan" class="form"  value="Alfa">Alfa
+			  			@if ($errors->has('keterangan'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('id_keterangan') }}</strong>
+                                <strong>{{ $errors->first('keterangan') }}</strong>
                             </span>
                         @endif
 			  		</div>

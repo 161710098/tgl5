@@ -14,8 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('absen','AbsenController');
-Route::resource('keterangan','KeteranganController');
+
 
 
 Auth::routes();
@@ -27,6 +26,9 @@ Route::get('cek', function () {
 Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']], function(){
 Route::resource('kelas','KelasController');
 Route::resource('siswa','SiswaController');
+Route::resource('absen','AbsenController');
+Route::resource('keterangan','KeteranganController');
+
 
 
 

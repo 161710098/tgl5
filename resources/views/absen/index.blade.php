@@ -9,9 +9,15 @@
 			  	<div class="panel-title pull-right"><a href="{{ route('absen.create') }}">Tambah</a>
 			  	</div>
 			  </div>
+
+			  <link rel = "stylesheet" type="text/css" href="/css/search.min.css"/>
+               <script type="text/javascript" src="/css/searchh.min.js"></script>
+             </div>
 			  <div class="panel-body">
 			  	<div class="table-responsive">
-				  <table class="table">
+			  		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+				  <table class="table" id="myTable">
 				  	<thead>
 			  		<tr>
 			  		  <th>No</th>
@@ -29,9 +35,10 @@
 				  	  <tr>
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->tgl_absen }}</td>
-				    	<td>{{ $data->kelas }}</td>
-				    	<td>{{ $data->siswa }}</td>
-				    	<td>{{ $data->keterangan }}</td>
+				    	<td>{{ $data->siswa->kelas->kelas }}</td>
+				    	<td>{{ $data->siswa->nama }}</td>
+				    	<td>{{ $data->keterangan}}</td>
+
 
 				    	
 <td>
@@ -52,6 +59,31 @@
 				      @endforeach	
 				  	</tbody>
 				  </table>
+				  <script>
+	function myFunction(){
+       var input, filter, table, tr, td, i;
+       input = document.getElementById("myInput");
+       filter = input.value.toupperCase();
+      table = document.getElementById("myTable");
+      tr = document.getElementById("tr");
+       for(i = 0; i < tr.length; i++){
+       	td = tr[i].getElementByIdTagName("td")[3];
+
+       	if (td){
+       		if (td.innerHTML.toupperCase().indexOf(filter)> -1)
+       			tr[i].style.display = "";
+       	}else {
+       		tr[i].style.display ="none";
+          }
+       	}
+       }
+	
+
+
+
+
+
+				  </script>
 				</div>
 			  </div>
 			</div>	
