@@ -29,9 +29,11 @@
     <link href="/assets/admin/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="/assets/admin/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/assets/admin/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    
 
     <!-- Main CSS-->
     <link href="/assets/admin/css/theme.css" rel="stylesheet" media="all">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @yield('css')
 </head>
 
@@ -84,6 +86,7 @@
 
     <!-- Main JS-->
     <script src="/assets/admin/js/main.js"></script>
+    <script src="{{ asset('js/app.js')  }}"></script>
     @yield('js')
 </body>
 

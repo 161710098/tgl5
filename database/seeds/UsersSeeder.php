@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Role;
+use App\User;
 class UsersSeeder extends Seeder
 {
     /**
@@ -24,21 +25,21 @@ class UsersSeeder extends Seeder
         $memberRole ->save();
 
         //membuat sample admin
-        $adminRole = new user();
-        $adminRole ->name='admin';
-        $adminRole ->email='admin@gmail.com';
-        $adminRole ->password=bcrypt('rahasia');
-        $adminRole ->save();
-        $adminRole ->attachRole($memberRole);
+        $admin = new user();
+        $admin ->name='admin';
+        $admin ->email='admin@gmail.com';
+        $admin ->password=bcrypt('rahasia');
+        $admin ->save();
+        $admin ->attachRole($adminRole);
 
         //membuat sample member
 
-        $adminRole = new user();
-        $adminRole ->name='sample member';
-        $adminRole ->email='member@gmail.com';
-        $adminRole ->password=bcrypt('rahasia');
-        $adminRole ->save();
-        $adminRole ->attachRole($memberRole);
+        $member = new user();
+        $member ->name='sample member';
+        $member ->email='member@gmail.com';
+        $member ->password=bcrypt('rahasia');
+        $member ->save();
+        $member ->attachRole($memberRole);
 
 
     }

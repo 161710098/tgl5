@@ -26,8 +26,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $p = siswa::all();
-        return view('siswa.create',compact('siswa'));
+        $p = Kelas::all();
+        return view('siswa.create',compact('p'));
     }
 
     /**
@@ -50,7 +50,7 @@ class SiswaController extends Controller
         $siswa->jenis_kelamin = $request->jenis_kelamin;
         $siswa->id_kelas = $request->id_kelas;
         $siswa->save();
-        return redirect('siswa');
+        return redirect()->route('siswa.index');
     }
 
     /**

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\kelas;
+use App\Keterangan;
 use Illuminate\Http\Request;
 
-class KelasController extends Controller
+class KeteranganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
-        return view ('kelas.index',compact('kelas'));
+        $keterangan = Keterangan::all();
+        return view ('keterangan.index',compact('keterangan'));
     }
 
     /**
@@ -25,8 +25,9 @@ class KelasController extends Controller
      */
     public function create()
     {
-        $kelas = Kelas::all();
-        return view('kelas.create',compact('kelas'));
+        $keterangan = Keterangan::all();
+        return view('keterangan.create',compact('keterangan'));
+
     }
 
     /**
@@ -38,75 +39,70 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'kelas'=>'required',
-            'jurusan'=>'required',
-            'wali_kelas'=>'required'
+            'keterangan'=>'required',
         ]);
-        $kelas = new Kelas;
-        $kelas->kelas = $request->kelas;
-        $kelas->jurusan = $request->jurusan;
-        $kelas->wali_kelas = $request->wali_kelas;
-        $kelas->save();
+        $keterangan = new Keterangan;
+        $keterangan->keterangan = $request->keterangan;
+        $keterangan->save();
         // Alert::success('Tambah Data','Berhasil')->autoclose(1500);
-        return redirect()->route('kelas.index');
+        return redirect()->route('keterangan.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\kelas  $kelas
+     * @param  \App\Keterangan  $keterangan
      * @return \Illuminate\Http\Response
      */
-    public function show(kelas $kelas)
+    public function show($id)
     {
-        //
+        $keterangan = Keterangan::findOrFail($id);
+        return view('keterangan.show',compact('keterangan'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\kelas  $kelas
+     * @param  \App\Keterangan  $keterangan
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $kelas = Kelas::findOrFail($id);
-        return view('kelas.edit',compact('kelas'));
+         $keterangan = Keterangan::all();
+        return view('keterangan.create',compact('keterangan'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\kelas  $kelas
+     * @param  \App\Keterangan  $keterangan
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'kelas' => 'required',
-            'jurusan'=>'required',
-            'wali_kelas'=>'required'
+       $this->validate($request,[
+            'keterangan' => 'required',
             ]);
-        $kelas = Kelas::findOrFail($id);
-        $kelas->kelas = $request->kelas;
-        $kelas->jurusan = $request->jurusan;
-        $kelas->wali_kelas = $request->wali_kelas;
-        $kelas->save();
+        $keterangan = Keterangan::findOrFail($id);
+        $keterangan->keterangan = $request->keterangan;
+        $keterangan->save();
         // Alert::success('Tambah Data','Berhasil')->autoclose(1500);
-        return redirect()->route('kelas.index');
+        return redirect()->route('keterangan.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\kelas  $kelas
+     * @param  \App\Keterangan  $keterangan
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $kelas = Kelas::findOrFail($id);
-        $kelas->delete();
-        return redirect()->route('kelas.index');
+         $keterangan = Keterangan::findOrFail($id);
+        $keterangan->delete();
+        return redirect()->route('keterangan.index');
     }
 }

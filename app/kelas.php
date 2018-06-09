@@ -11,7 +11,7 @@ class kelas extends Model
 
     
     public function Siswa(){
-    	return $this->hasMany('App\Siswa','kelas_id');
+    	return $this->hasMany('App\Siswa','id_kelas');
     
 }
 }

@@ -12,5 +12,8 @@ class siswa extends Model
     public function Kelas(){
     	return $this->belongsTo('App\Kelas','id_kelas');
     }
+    public function Absen(){
+    	return $this->hasMany('App\Absen','siswa_id');
+    }
     
 }

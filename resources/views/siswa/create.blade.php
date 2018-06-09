@@ -42,7 +42,12 @@
 
 			  		<div class="form-group {{ $errors->has('id_kelas') ? ' has-error' : '' }}">
 			  			<label class="control-label"> Kelas</label>	
-			  			<input type="text" name="id_kelas" class="form-control"  required>
+			  			<select name = "id_kelas" class="form-control">
+			  				@foreach ($p as $data)
+			  				<option value="{{ $data->id}}">{{$data->kelas }}</option>
+			  				@endforeach
+			  			</select>
+			  			
 			  			@if ($errors->has('id_kelas'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('id_kelas') }}</strong>
