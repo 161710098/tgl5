@@ -15,10 +15,13 @@ class CreateKelasTable extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kelas');
-            $table->string('jurusan');
-            $table->string('wali_kelas');
+             $table->integer('id_jurusan')->unsigned();
+            $table->string('nama_kelas');
+            $table->string('walikelas');
             $table->timestamps();
+
+            $table->foreign('id_jurusan')->references('id')->on('jurusans')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

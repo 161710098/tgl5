@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\siswa;
-use App\kelas;
+use App\Siswa;
+use App\Kelas;
+use App\OrangTua;
 use Illuminate\Http\Request;
+use Alert;
+use DB;
 
 class SiswaController extends Controller
 {
@@ -15,8 +18,9 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswa = siswa::all();
-        return view ('siswa.index',compact('siswa'));
+        $kelas = Kelas::all();
+        $siswa = Siswa::all();
+        return view ('siswa.index',compact('siswa','kelas'));
     }
 
     /**
@@ -26,8 +30,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $p = Kelas::all();
-        return view('siswa.create',compact('p'));
+         $siswa = Siswa::all();
+        return view('siswa.create',compact('siswa'));
     }
 
     /**
@@ -38,42 +42,44 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'nis'=>'required',
-            'nama'=>'required',
-            'jenis_kelamin'=>'required',
-            'id_kelas'=>'required'
-        ]);
-        $siswa = new siswa;
-        $siswa->nis = $request->nis;
-        $siswa->nama = $request->nama;
-        $siswa->jenis_kelamin = $request->jenis_kelamin;
-        $siswa->id_kelas = $request->id_kelas;
+        $siswa = new Siswa;
+        $siswa->id_kelas = $request->b;
+        $siswa->nama_siswa = $request->a;
+        $siswa->nis = $request->c;
+        $siswa->alamat = $request->d;
+        $siswa->no_hp = $request->e;
         $siswa->save();
-        return redirect()->route('siswa.index');
+        return redirect('siswa');
+
+        $this->validate($request,[
+            'id_kelas' => 'required',
+            'nis' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\siswa  $siswa
+     * @param  \App\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show(siswa $siswa)
+    public function show($id)
     {
-        $siswa = siswa::findOrFail($id);
+        $siswa = Siswa::findOrFail($id);
         return view('siswa.show',compact('siswa'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\siswa  $siswa
+     * @param  \App\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $siswa = siswa::findOrFail($id);
+         $siswa = Siswa::findOrFail($id);
         return view('siswa.edit',compact('siswa'));
     }
 
@@ -81,37 +87,39 @@ class SiswaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\siswa  $siswa
+     * @param  \App\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'nama' => 'required',
-            'nis'=>'required',
-            'jenis_kelamin'=>'required',
-            'id_kelas'=>'required'
-            ]);
-        $siswa = siswa::findOrFail($id);
-        $siswa->nama = $request->nama;
-        $siswa->nis = $request->nis;
-        $siswa->jenis_kelamin = $request->jenis_kelamin;
-        $siswa->id_kelas = $request->id_kelas;
+        $siswa = Siswa::findOrFail($id);
+        $siswa->id_kelas = $request->b;
+        $siswa->nama_siswa = $request->a;
+        $siswa->nis = $request->c;
+        $siswa->alamat = $request->d;
+        $siswa->no_hp = $request->e;
         $siswa->save();
-        Alert::success('Tambah Data','Berhasil')->autoclose(1500);
         return redirect()->route('siswa.index');
+
+        $this->validate($request,[
+            'id_kelas' => 'required',
+            'nis' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\siswa  $siswa
+     * @param  \App\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $siswa = siswa::findOrFail($id);
+        $siswa=siswa::findOrFail($id);
         $siswa->delete();
         return redirect()->route('siswa.index');
+
     }
 }

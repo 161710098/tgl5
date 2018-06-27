@@ -19,17 +19,25 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('cek', function () {
-    return view('layouts.admin');
-});
-Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']], function(){
-Route::resource('kelas','KelasController');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::group(['middleware'=>['auth','role:admin']], function(){
+Route::resource('kelas', 'KelasController');
+Route::resource('jurusan','JurusanController');
 Route::resource('siswa','SiswaController');
-Route::resource('absen','AbsenController');
-Route::resource('keterangan','KeteranganController');
+Route::resource('absensi','AbsensiController');
+});
+Route::group(['middleware'=>['auth']], function(){
+Route::resource('akumulasi','AkumulasiController');
+});
+Route::post('/laporanabsensi' , 'AkumulasiController@index2');
+ 
+Route::get('/filter/kelas/{id}', 'AbsensiController@filter');
 
+Route::get('/percobaan',function(){
+	return view ('layout.user');
+});
 
-
-
+Route::group(['middleware'=>'cors'],function(){
+	Route::get('/akumulasis','ApiController@akumulasi');
 });

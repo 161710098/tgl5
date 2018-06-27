@@ -4,16 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class siswa extends Model
+class Siswa extends Model
 {
-    protected $fillable = ['nis','nama','jenis_kelamin','id_kelas'];
-    public $timestamps = true;
+    protected $table = 'siswas';
+    protected $fillable=['id_kelas','nama_siswa','nis','alamat','no_hp'];
+    protected $visible=['id_kelas','nama_siswa','nis','alamat','no_hp'];
+    public $timestamps=true;
 
-    public function Kelas(){
-    	return $this->belongsTo('App\Kelas','id_kelas');
+   
+    public function kelas()
+    {
+    	return $this->belongsTo('App\kelas','id_kelas');
     }
-    public function Absen(){
-    	return $this->hasMany('App\Absen','siswa_id');
+
+    public function absensi()
+    {
+        return $this->hasMany('App\absensi','id_siswa');
     }
-    
 }
